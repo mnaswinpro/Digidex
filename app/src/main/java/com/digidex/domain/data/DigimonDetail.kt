@@ -1,4 +1,4 @@
-package com.digidex.ui.data
+package com.digidex.domain.data
 
 data class DigimonDetail(
     val id: String,
