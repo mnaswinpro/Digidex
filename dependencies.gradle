@@ -17,6 +17,19 @@ ext {
     ]
     network = networkDependencies.values()
 
+    //Dependency Injection
+    def hiltVersion = '2.44'
+    hiltDependencies = [
+            hilt: "com.google.dagger:hilt-android:${hiltVersion}"
+    ]
+    hilt = hiltDependencies.values()
+
+    //Compilers
+    compilersDependencies = [
+            hiltCompiler: "com.google.dagger:hilt-compiler:${hiltVersion}"
+    ]
+    compilers = compilersDependencies.values()
+
     //Unit Testing
     def jUnitVersion = '4.13.2'
     jUnitDependencies = [
