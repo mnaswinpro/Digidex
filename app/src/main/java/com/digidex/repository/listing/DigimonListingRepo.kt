@@ -6,5 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface DigimonListingRepo {
 
-    fun execute() : Flow<NetworkResult<DigimonListResponse>>
+    suspend fun execute() : Flow<NetworkResult<DigimonListResponse>>
 }

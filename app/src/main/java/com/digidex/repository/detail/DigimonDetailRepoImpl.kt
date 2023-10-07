@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 class DigimonDetailRepoImpl @Inject constructor(private val api: DigimonApi) : DigimonDetailRepo {
 
-    override fun execute(url: String): Flow<NetworkResult<DigimonDetailResponse>> = callbackFlow {
+    override suspend fun execute(url: String): Flow<NetworkResult<DigimonDetailResponse>> = callbackFlow {
         val callback = object : Callback<DigimonDetailResponse> {
             override fun onResponse(
                 call: Call<DigimonDetailResponse>,
