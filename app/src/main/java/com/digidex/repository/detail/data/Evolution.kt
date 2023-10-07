@@ -1,6 +1,6 @@
 package com.digidex.repository.detail.data
 
-data class NextEvolution(
+data class Evolution(
     val condition: String,
     val digimon: String,
     val id: Int,

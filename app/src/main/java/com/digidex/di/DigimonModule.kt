@@ -1,5 +1,7 @@
 package com.digidex.di
 
+import com.digidex.domain.DigimonTransformer
+import com.digidex.domain.DigimonTransformerImpl
 import com.digidex.repository.detail.DigimonDetailRepo
 import com.digidex.repository.detail.DigimonDetailRepoImpl
 import com.digidex.repository.listing.DigimonListingRepo
@@ -18,4 +20,7 @@ abstract class DigimonModule {
 
     @Binds
     abstract fun detailRepository(impl: DigimonDetailRepoImpl): DigimonDetailRepo
+
+    @Binds
+    abstract fun transformer(impl: DigimonTransformerImpl): DigimonTransformer
 }
