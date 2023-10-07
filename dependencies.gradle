@@ -1,0 +1,23 @@
+ext {
+
+    //UI
+    def materialThemeVersion = '1.5.0'
+    materialThemeDependencies = [
+            materialTheme: "com.google.android.material:material:${materialThemeVersion}"
+    ]
+    materialTheme = materialThemeDependencies.values()
+
+    //Unit Testing
+    def jUnitVersion = '4.13.2'
+    jUnitDependencies = [
+            jUnit: "junit:junit:${jUnitVersion}"
+    ]
+    jUnit = jUnitDependencies.values()
+
+    //UI Testing
+    def espressoVersion = '3.5.1'
+    espressoDependencies = [
+            espressoCore: "androidx.test.espresso:espresso-core:${espressoVersion}"
+    ]
+    espresso = espressoDependencies.values()
+}
