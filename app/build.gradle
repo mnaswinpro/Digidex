@@ -48,6 +48,7 @@ dependencies {
 
     implementation materialTheme
     implementation network
+    implementation androidX
     implementation hilt
     kapt compilers
 

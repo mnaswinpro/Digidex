@@ -30,6 +30,16 @@ ext {
     ]
     compilers = compilersDependencies.values()
 
+    //AndroidX
+    def androidXActivityKtxVersion = '1.1.0'
+    def androidXLifecycleViewModelVersion = '2.6.2'
+
+    androidXDependencies = [
+            androidXActivityKtx: "androidx.activity:activity-ktx:${androidXActivityKtxVersion}",
+            androidXLifecycleViewModel: "androidx.lifecycle:lifecycle-viewmodel-ktx:${androidXLifecycleViewModelVersion}"
+    ]
+    androidX = androidXDependencies.values()
+
     //Unit Testing
     def jUnitVersion = '4.13.2'
     jUnitDependencies = [
