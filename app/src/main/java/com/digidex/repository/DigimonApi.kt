@@ -9,7 +9,7 @@ import retrofit2.http.Url
 
 interface DigimonApi {
 
-    @GET
+    @GET("digimon")
     fun getDigimonList(
         @Query("pageSize") pageSize: String = "20",
         @Query("page") page: String = "0"

@@ -9,12 +9,12 @@ apply from: '../dependencies.gradle'
 
 android {
     namespace 'com.digidex'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.digidex"
         minSdk 24
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
