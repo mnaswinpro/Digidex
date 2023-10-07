@@ -7,6 +7,16 @@ ext {
     ]
     materialTheme = materialThemeDependencies.values()
 
+    //Network
+    def retrofitVersion = '2.6.1'
+    def okHttpVersion = '4.2.0'
+    networkDependencies = [
+            retrofit: "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            retrofitGsonConverter: "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+            okHttp3Logging: "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}"
+    ]
+    network = networkDependencies.values()
+
     //Unit Testing
     def jUnitVersion = '4.13.2'
     jUnitDependencies = [
