@@ -5,8 +5,9 @@ import com.digidex.repository.detail.data.Evolution
 import com.digidex.repository.listing.data.DigimonListResponse
 import com.digidex.ui.data.Digimon
 import com.digidex.ui.data.DigimonDetail
+import javax.inject.Inject
 
-class DigimonTransformerImpl : DigimonTransformer{
+class DigimonTransformerImpl @Inject constructor() : DigimonTransformer{
 
     override fun getDigimonList(response: DigimonListResponse): List<Digimon> {
         return response.content.map {

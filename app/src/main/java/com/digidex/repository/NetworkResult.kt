@@ -6,5 +6,7 @@ sealed class NetworkResult<out T> {
 
     class Success<T>(val result : T) : NetworkResult<T>()
 
-    class Error(val exception: Exception) : NetworkResult<Nothing>()
+    class GenericError(val exception: Exception) : NetworkResult<Nothing>()
+
+    object DataError : NetworkResult<Nothing>()
 }
