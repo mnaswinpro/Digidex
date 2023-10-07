@@ -49,6 +49,7 @@ dependencies {
     implementation materialTheme
     implementation network
     implementation androidX
+    implementation imageLoader
     implementation hilt
     kapt compilers
 

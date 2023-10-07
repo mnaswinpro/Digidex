@@ -40,6 +40,14 @@ ext {
     ]
     androidX = androidXDependencies.values()
 
+    //Image loader
+    def picassoVersion = '2.8'
+
+    imageLoaderDependencies = [
+            picasso: "com.squareup.picasso:picasso:${picassoVersion}"
+    ]
+    imageLoader = imageLoaderDependencies.values()
+
     //Unit Testing
     def jUnitVersion = '4.13.2'
     jUnitDependencies = [
