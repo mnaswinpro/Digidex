@@ -10,8 +10,8 @@ import com.digidex.domain.data.DigimonDetail
 import com.digidex.repository.NetworkResult
 import com.digidex.repository.detail.DigimonDetailRepo
 import com.digidex.repository.listing.DigimonListingRepo
-import com.digidex.ui.data.DetailScreen
-import com.digidex.ui.data.ListingScreen
+import com.digidex.ui.detail.DetailScreen
+import com.digidex.ui.listing.ListingScreen
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

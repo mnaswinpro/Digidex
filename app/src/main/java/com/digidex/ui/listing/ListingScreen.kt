@@ -1,4 +1,4 @@
-package com.digidex.ui.data
+package com.digidex.ui.listing
 
 sealed class ListingScreen <out T> {
 

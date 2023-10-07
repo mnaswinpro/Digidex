@@ -1,4 +1,4 @@
-package com.digidex.ui.data
+package com.digidex.ui.detail
 
 sealed class DetailScreen <out T> {
 
