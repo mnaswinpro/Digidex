@@ -55,15 +55,21 @@ ext {
 
     //Unit Testing
     def jUnitVersion = '4.13.2'
-    jUnitDependencies = [
-            jUnit: "junit:junit:${jUnitVersion}"
+    def androidXCoreTestingVersion = '2.1.0'
+    def kotlinXCoroutineVersion = '1.5.2'
+    def mockkVersion = '1.13.5'
+    unitTestingDependencies = [
+            jUnit: "junit:junit:${jUnitVersion}",
+            androidXCoreTesting: "androidx.arch.core:core-testing:${androidXCoreTestingVersion}",
+            kotlinXCoroutine: "org.jetbrains.kotlinx:kotlinx-coroutines-test:${kotlinXCoroutineVersion}",
+            mockk: "io.mockk:mockk:${mockkVersion}"
     ]
-    jUnit = jUnitDependencies.values()
+    unitTesting = unitTestingDependencies.values()
 
     //UI Testing
     def espressoVersion = '3.5.1'
-    espressoDependencies = [
+    uiTestingDependencies = [
             espressoCore: "androidx.test.espresso:espresso-core:${espressoVersion}"
     ]
-    espresso = espressoDependencies.values()
+    uiTesting = uiTestingDependencies.values()
 }

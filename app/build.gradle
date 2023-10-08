@@ -53,6 +53,6 @@ dependencies {
     implementation hilt
     kapt compilers
 
-    testImplementation jUnit
-    androidTestImplementation espresso
+    testImplementation unitTesting
+    androidTestImplementation uiTesting
 }
