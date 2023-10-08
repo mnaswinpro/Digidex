@@ -33,10 +33,13 @@ ext {
     //AndroidX
     def androidXActivityKtxVersion = '1.8.0'
     def androidXLifecycleViewModelVersion = '2.1.0'
+    def androidXNavigationVersion = '2.3.5'
 
     androidXDependencies = [
             androidXActivityKtx: "androidx.activity:activity-ktx:${androidXActivityKtxVersion}",
-            androidXLifecycleViewModel: "androidx.lifecycle:lifecycle-viewmodel-ktx:${androidXLifecycleViewModelVersion}"
+            androidXLifecycleViewModel: "androidx.lifecycle:lifecycle-viewmodel-ktx:${androidXLifecycleViewModelVersion}",
+            androidXNavigationFragment: "androidx.navigation:navigation-fragment-ktx:${androidXNavigationVersion}",
+            androidXNavigationUi: "androidx.navigation:navigation-ui-ktx:${androidXNavigationVersion}"
     ]
     androidX = androidXDependencies.values()
 
