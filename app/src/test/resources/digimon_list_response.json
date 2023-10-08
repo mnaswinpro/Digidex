@@ -1,0 +1,36 @@
+{
+  "content": [
+    {
+      "id": 1,
+      "name": "Garummon",
+      "href": "https://www.digi-api.com/api/v1/digimon/1",
+      "image": "https://www.digi-api.com/images/digimon/w/Garummon.png"
+    },
+    {
+      "id": 2,
+      "name": "Craniummon",
+      "href": "https://www.digi-api.com/api/v1/digimon/2",
+      "image": "https://www.digi-api.com/images/digimon/w/Craniummon.png"
+    },
+    {
+      "id": 3,
+      "name": "Holy Angemon",
+      "href": "https://www.digi-api.com/api/v1/digimon/3",
+      "image": "https://www.digi-api.com/images/digimon/w/Holy_Angemon.png"
+    },
+    {
+      "id": 4,
+      "name": "Ancient Beatmon",
+      "href": "https://www.digi-api.com/api/v1/digimon/4",
+      "image": "https://www.digi-api.com/images/digimon/w/Ancient_Beatmon.png"
+    }
+  ],
+  "pageable": {
+    "currentPage": 0,
+    "elementsOnPage": 4,
+    "totalElements": 1422,
+    "totalPages": 355,
+    "previousPage": "",
+    "nextPage": "https://www.digi-api.com/api/v1/digimon?pageSize=4&page=1"
+  }
+}
