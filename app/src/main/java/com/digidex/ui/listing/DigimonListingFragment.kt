@@ -1,33 +1,34 @@
 package com.digidex.ui.listing
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.digidex.R
+import com.digidex.base.BaseFragment
+import com.digidex.databinding.FragmentDigimonListingBinding
 
-class DigimonListingFragment : Fragment() {
+class DigimonListingFragment : BaseFragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private lateinit var binding : FragmentDigimonListingBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_digimon_listing, container, false)
+    ): View {
+        binding = FragmentDigimonListingBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initUi()
+    }
+
+    private fun initUi() {
+
     }
 
     companion object {
-
-        fun newInstance() =
-            DigimonListingFragment().apply {
-                arguments = Bundle().apply {
-
-                }
-            }
+        fun newInstance() = DigimonListingFragment()
     }
 }
