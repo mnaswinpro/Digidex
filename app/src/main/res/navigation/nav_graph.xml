@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/listingFragment">
+
+    <fragment
+        android:id="@+id/listingFragment"
+        android:name="com.digidex.ui.listing.DigimonListingFragment">
+        <action
+            android:id="@+id/listing_to_detail"
+            app:destination="@id/detailFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.digidex.ui.detail.DigimonDetailFragment"/>
+
+</navigation>
