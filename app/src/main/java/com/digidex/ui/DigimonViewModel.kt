@@ -1,10 +1,11 @@
-package com.digidex.domain
+package com.digidex.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.digidex.dispatcher.CoroutineDispatcherApi
+import com.digidex.domain.DigimonTransformer
 import com.digidex.domain.data.Digimon
 import com.digidex.domain.data.DigimonDetail
 import com.digidex.repository.NetworkResult
@@ -36,7 +37,9 @@ class DigimonViewModel @Inject constructor(
                 when(it) {
                     is NetworkResult.Success -> {
                         if(it.result.content.isEmpty()) {
-                            _digimonListLiveData.postValue(ListingScreen.Empty(ERROR_MESSAGE_EMPTY_DATA))
+                            _digimonListLiveData.postValue(ListingScreen.Empty(
+                                ERROR_MESSAGE_EMPTY_DATA
+                            ))
                         } else {
                             _digimonListLiveData.postValue(
                                 ListingScreen.Success(transformer.getDigimonList(it.result))

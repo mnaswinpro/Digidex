@@ -21,4 +21,5 @@
     <dimen name="icon_size_16dp">16dp</dimen>
     <dimen name="icon_size_24dp">24dp</dimen>
 
+    <dimen name="progressbar_small">32dp</dimen>
 </resources>
