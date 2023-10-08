@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Spacing for margins, padding -->
+    <dimen name="spacing_0dp">0dp</dimen>
+    <dimen name="spacing_1dp">1dp</dimen>
+    <dimen name="spacing_2dp">2dp</dimen>
+    <dimen name="spacing_4dp">4dp</dimen>
+    <dimen name="spacing_8dp">8dp</dimen>
+    <dimen name="spacing_16dp">16dp</dimen>
+    <dimen name="spacing_32dp">32dp</dimen>
+    <dimen name="spacing_48dp">32dp</dimen>
+    <dimen name="spacing_64dp">32dp</dimen>
+
+    <!-- Text size -->
+    <dimen name="text_size_16sp">16sp</dimen>
+    <dimen name="text_size_14sp">14sp</dimen>
+    <dimen name="text_size_12sp">12sp</dimen>
+
+    <!-- Icon size -->
+    <dimen name="icon_size_16dp">16dp</dimen>
+    <dimen name="icon_size_24dp">24dp</dimen>
+
+</resources>
