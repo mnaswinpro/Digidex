@@ -20,7 +20,7 @@ class DigimonListingFragment : BaseFragment() {
 
     private val viewModel : DigimonViewModel by activityViewModels()
 
-    private val adapter by lazy { DigimonListAdapter { onDigimonSelected(it) } }
+    private val adapter by lazy { DigimonListAdapter(this::onDigimonSelected)}
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
