@@ -34,7 +34,7 @@ ext {
     def androidXActivityKtxVersion = '1.8.0'
     def androidXFragmentKtxVersion = '1.6.1'
     def androidXLifecycleViewModelVersion = '2.1.0'
-    def androidXNavigationVersion = '2.3.5'
+    def androidXNavigationVersion = '2.6.0'
 
     androidXDependencies = [
             androidXActivityKtx: "androidx.activity:activity-ktx:${androidXActivityKtxVersion}",
