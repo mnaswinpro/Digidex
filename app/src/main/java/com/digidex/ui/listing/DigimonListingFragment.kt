@@ -5,22 +5,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.digidex.base.BaseFragment
 import com.digidex.databinding.FragmentDigimonListingBinding
-import com.digidex.ui.DigimonViewModel
 import com.digidex.domain.data.Digimon
+import com.digidex.ui.DigimonViewModel
 import com.digidex.ui.common.DigimonListAdapter
+import com.digidex.ui.common.DigimonListAdapter.Companion.GRID_LAYOUT_COLUMN_COUNT
 import com.digidex.util.hide
 import com.digidex.util.show
 
 class DigimonListingFragment : BaseFragment() {
 
-    private lateinit var binding : FragmentDigimonListingBinding
+    private lateinit var binding: FragmentDigimonListingBinding
 
-    private val viewModel : DigimonViewModel by activityViewModels()
+    private val viewModel: DigimonViewModel by activityViewModels()
 
-    private val adapter by lazy { DigimonListAdapter(this::onDigimonSelected)}
+    private val adapter by lazy { DigimonListAdapter(this::onDigimonSelected) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,13 +36,13 @@ class DigimonListingFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         initUi()
         initObservers()
-        if(isNetworkAvailable()) {
+        if (isNetworkAvailable()) {
             viewModel.fetchDigimonList()
         }
     }
 
     private fun initUi() {
-        binding.rvDigimonList.layoutManager = LinearLayoutManager(context)
+        binding.rvDigimonList.layoutManager = GridLayoutManager(context, GRID_LAYOUT_COLUMN_COUNT)
         binding.rvDigimonList.adapter = adapter
     }
 
@@ -50,8 +52,15 @@ class DigimonListingFragment : BaseFragment() {
                 is ListingScreen.Loading -> {
                     showLoading()
                 }
-                is ListingScreen.Empty -> TODO()
-                is ListingScreen.Error -> TODO()
+
+                is ListingScreen.Empty -> {
+                    showEmpty()
+                }
+
+                is ListingScreen.Error -> {
+                    showError()
+                }
+
                 is ListingScreen.Success -> {
                     showContent(it.digimonList)
                 }
@@ -70,11 +79,16 @@ class DigimonListingFragment : BaseFragment() {
         binding.progressBar.show()
     }
 
-    private fun onDigimonSelected(digimon: Digimon) {
+    private fun showError() {
 
     }
 
-    companion object {
-        fun newInstance() = DigimonListingFragment()
+    private fun showEmpty() {
+
+    }
+
+    private fun onDigimonSelected(digimon: Digimon) {
+        val action = DigimonListingFragmentDirections.actionListingToDetail(digimon = digimon)
+        findNavController().navigate(action)
     }
 }

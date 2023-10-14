@@ -25,7 +25,7 @@ class DigimonTransformerImpl @Inject constructor() : DigimonTransformer{
             id = "#${response.id}",
             name = response.name,
             imageUrl = response.images.first().href,
-            description = response.descriptions.first().description,
+            description = response.descriptions.firstOrNull{ it.language == SUPPORTED_LANGUAGE }?.description.orEmpty(),
             priorEvolutions = response.priorEvolutions.map { it.toDigimon() },
             nextEvolutions = response.nextEvolutions.map { it.toDigimon() }
         )
@@ -38,5 +38,9 @@ class DigimonTransformerImpl @Inject constructor() : DigimonTransformer{
             imageUrl = image,
             detailUrl = url
         )
+    }
+
+    companion object {
+        const val SUPPORTED_LANGUAGE = "en_us"
     }
 }
