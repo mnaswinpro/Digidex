@@ -13,6 +13,7 @@ ext {
     networkDependencies = [
             retrofit: "com.squareup.retrofit2:retrofit:${retrofitVersion}",
             retrofitGsonConverter: "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+            okHttp3: "com.squareup.okhttp3:okhttp:${okHttpVersion}",
             okHttp3Logging: "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}"
     ]
     network = networkDependencies.values()
@@ -46,10 +47,10 @@ ext {
     androidX = androidXDependencies.values()
 
     //Image loader
-    def picassoVersion = '2.8'
+    def coilVersion = '1.4.0'
 
     imageLoaderDependencies = [
-            picasso: "com.squareup.picasso:picasso:${picassoVersion}"
+            coil: "io.coil-kt:coil:${coilVersion}"
     ]
     imageLoader = imageLoaderDependencies.values()
 
