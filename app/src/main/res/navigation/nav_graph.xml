@@ -1,19 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/listingFragment">
+    app:startDestination="@id/digimonListingFragment">
 
     <fragment
-        android:id="@+id/listingFragment"
-        android:name="com.digidex.ui.listing.DigimonListingFragment">
+        android:id="@+id/digimonListingFragment"
+        android:name="com.digidex.ui.listing.DigimonListingFragment"
+        android:label="DigimonListingFragment"
+        tools:layout="@layout/fragment_digimon_listing">
         <action
-            android:id="@+id/listing_to_detail"
-            app:destination="@id/detailFragment"/>
+            android:id="@+id/action_listing_to_detail"
+            app:destination="@id/digimonDetailFragment">
+            <argument
+                android:name="digimon"
+                app:argType="com.digidex.domain.data.Digimon"/>
+        </action>
+
     </fragment>
 
     <fragment
-        android:id="@+id/detailFragment"
-        android:name="com.digidex.ui.detail.DigimonDetailFragment"/>
+        android:id="@+id/digimonDetailFragment"
+        android:name="com.digidex.ui.detail.DigimonDetailFragment"
+        android:label="DigimonDetailFragment"
+        tools:layout="@layout/fragment_digimon_detail">
+        <action
+            android:id="@+id/action_detail_to_detail"
+            app:destination="@id/digimonDetailFragment">
+            <argument
+                android:name="digimon"
+                app:argType="com.digidex.domain.data.Digimon"/>
+        </action>
+    </fragment>
+
+    <argument
+        android:name="digimon"
+        app:argType="com.digidex.domain.data.Digimon"/>
 
 </navigation>
