@@ -38,6 +38,8 @@ class DigimonListingFragment : BaseFragment() {
         initObservers()
         if (isNetworkAvailable()) {
             viewModel.fetchDigimonList()
+        } else {
+            //TODO
         }
     }
 

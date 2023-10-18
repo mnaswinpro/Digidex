@@ -5,13 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.digidex.dispatcher.CoroutineDispatcherApi
-import com.digidex.domain.DigimonTransformer
+import com.digidex.domain.UseCaseResult
 import com.digidex.domain.data.Digimon
 import com.digidex.domain.data.DigimonDetail
-import com.digidex.repository.NetworkResult
-import com.digidex.repository.detail.DigimonDetailRepo
-import com.digidex.repository.listing.DigimonListingRepo
+import com.digidex.repository.NoDataException
 import com.digidex.ui.detail.DetailScreen
+import com.digidex.ui.detail.DigimonDetailUseCase
+import com.digidex.ui.listing.DigimonListingUseCase
 import com.digidex.ui.listing.ListingScreen
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -19,9 +19,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DigimonViewModel @Inject constructor(
-    private val listingRepository: DigimonListingRepo,
-    private val detailRepository: DigimonDetailRepo,
-    private val transformer: DigimonTransformer,
+    private val digimonListingUseCase: DigimonListingUseCase,
+    private val digimonDetailUseCase: DigimonDetailUseCase,
     private val dispatcher: CoroutineDispatcherApi
 ) : ViewModel() {
 
@@ -34,11 +33,11 @@ class DigimonViewModel @Inject constructor(
     val digimonDetailLiveData: LiveData<DetailScreen<DigimonDetail>> get() = _digimonDetailLiveData
 
     fun fetchDigimonList() {
-        viewModelScope.launch(dispatcher.io) {
-            listingRepository.execute().collect {
+        viewModelScope.launch(dispatcher.main) {
+            digimonListingUseCase.execute().collect {
                 when (it) {
-                    is NetworkResult.Success -> {
-                        if (it.result.content.isEmpty()) {
+                    is UseCaseResult.Success -> {
+                        if (it.result.isEmpty()) {
                             _digimonListLiveData.postValue(
                                 ListingScreen.Empty(
                                     ERROR_MESSAGE_EMPTY_DATA
@@ -46,13 +45,20 @@ class DigimonViewModel @Inject constructor(
                             )
                         } else {
                             _digimonListLiveData.postValue(
-                                ListingScreen.Success(transformer.getDigimonList(it.result))
+                                ListingScreen.Success(it.result)
                             )
                         }
                     }
 
-                    is NetworkResult.Error -> {
-                        _digimonListLiveData.postValue(ListingScreen.Error(ERROR_MESSAGE_NULL_DATA))
+                    is UseCaseResult.Error -> {
+                        when(it.exception) {
+                            is NoDataException -> {
+                                _digimonListLiveData.postValue(ListingScreen.Error(it.exception.message))
+                            }
+                            else -> {
+                                _digimonListLiveData.postValue(ListingScreen.Error(ERROR_MESSAGE_GENERIC))
+                            }
+                        }
                     }
                 }
             }
@@ -60,17 +66,24 @@ class DigimonViewModel @Inject constructor(
     }
 
     fun fetchDigimon(url: String) {
-        viewModelScope.launch(dispatcher.io) {
-            detailRepository.execute(url).collect {
+        viewModelScope.launch(dispatcher.main) {
+            digimonDetailUseCase.execute(url).collect {
                 when (it) {
-                    is NetworkResult.Success -> {
+                    is UseCaseResult.Success -> {
                         _digimonDetailLiveData.postValue(
-                            DetailScreen.Success(transformer.getDigimonDetail(it.result))
+                            DetailScreen.Success(it.result)
                         )
                     }
 
-                    is NetworkResult.Error -> {
-                        _digimonDetailLiveData.postValue(DetailScreen.Error(ERROR_MESSAGE_NULL_DATA))
+                    is UseCaseResult.Error -> {
+                        when(it.exception) {
+                            is NoDataException -> {
+                                _digimonDetailLiveData.postValue(DetailScreen.Error(it.exception.message))
+                            }
+                            else -> {
+                                _digimonDetailLiveData.postValue(DetailScreen.Error(ERROR_MESSAGE_GENERIC))
+                            }
+                        }
                     }
                 }
             }
@@ -78,7 +91,6 @@ class DigimonViewModel @Inject constructor(
     }
 
     companion object {
-        const val ERROR_MESSAGE_NULL_DATA = "No Data found"
         const val ERROR_MESSAGE_EMPTY_DATA = "No Monsters in list"
         const val ERROR_MESSAGE_GENERIC = "Something went wrong"
     }

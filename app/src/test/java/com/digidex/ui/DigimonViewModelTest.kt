@@ -2,8 +2,8 @@ package com.digidex.ui
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.digidex.dispatcher.CoroutineDispatcherApi
-import com.digidex.domain.DigimonTransformer
-import com.digidex.domain.DigimonTransformerImpl
+import com.digidex.domain.listing.DigimonListingTransformer
+import com.digidex.domain.listing.DigimonListingTransformerImpl
 import com.digidex.domain.data.Digimon
 import com.digidex.domain.data.DigimonDetail
 import com.digidex.repository.NetworkResult
@@ -39,7 +39,7 @@ class DigimonViewModelTest {
     private lateinit var mockCoroutineDispatcher: CoroutineDispatcherApi
 
     private lateinit var viewModel: DigimonViewModel
-    private lateinit var digimonTransformer : DigimonTransformer
+    private lateinit var digimonListingTransformer : DigimonListingTransformer
 
     private lateinit var listingScreenStates: MutableList<ListingScreen<List<Digimon>>>
     private lateinit var detailScreenStates: MutableList<DetailScreen<DigimonDetail>>
@@ -48,7 +48,7 @@ class DigimonViewModelTest {
     fun beforeTest() {
         mockDigimonListingRepo = mockk()
         mockDigimonDetailRepo = mockk()
-        digimonTransformer = DigimonTransformerImpl()
+        digimonListingTransformer = DigimonListingTransformerImpl()
         mockCoroutineDispatcher = mockk()
 
         every { mockCoroutineDispatcher.io } returns testDispatcher
@@ -56,7 +56,7 @@ class DigimonViewModelTest {
         viewModel = DigimonViewModel(
             mockDigimonListingRepo,
             mockDigimonDetailRepo,
-            digimonTransformer,
+            digimonListingTransformer,
             mockCoroutineDispatcher
         )
 
