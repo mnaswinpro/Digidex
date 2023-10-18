@@ -35,8 +35,7 @@ class DigimonDetailFragment : BaseFragment() {
     private val nextEvolutionsAdapter by lazy { DigimonListAdapter(this::onDigimonSelected) }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentDigimonDetailBinding.inflate(inflater, container, false)
         return binding.root
@@ -52,6 +51,7 @@ class DigimonDetailFragment : BaseFragment() {
                 initObservers()
                 viewModel.fetchDigimon(digimon.detailUrl)
             }
+            arguments?.clear()
         }
     }
 
