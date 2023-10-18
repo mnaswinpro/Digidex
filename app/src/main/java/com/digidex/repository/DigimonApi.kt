@@ -11,10 +11,17 @@ interface DigimonApi {
 
     @GET("digimon")
     fun getDigimonList(
-        @Query("pageSize") pageSize: String = "20",
-        @Query("page") page: String = "0"
-    ) : Call<DigimonListResponse>?
+        @Query(QUERY_PAGE_SIZE) pageSize: String = DEFAULT_PAGE_SIZE,
+        @Query(QUERY_PAGE) page: String = DEFAULT_PAGE
+    ): Call<DigimonListResponse>?
 
     @GET
-    fun getDigimon(@Url digimonUrl: String) : Call<DigimonDetailResponse>?
+    fun getDigimon(@Url digimonUrl: String): Call<DigimonDetailResponse>?
+
+    companion object {
+        const val QUERY_PAGE_SIZE = "pageSize"
+        const val QUERY_PAGE = "page"
+        const val DEFAULT_PAGE_SIZE = "20"
+        const val DEFAULT_PAGE = "0"
+    }
 }

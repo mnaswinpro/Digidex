@@ -1,6 +1,7 @@
 package com.digidex.repository.listing
 
 import com.digidex.dispatcher.CoroutineDispatcherApi
+import com.digidex.domain.listing.DigimonListingRepo
 import com.digidex.repository.DigimonApi
 import com.digidex.repository.NetworkResult
 import com.digidex.repository.NoDataException
@@ -16,6 +17,7 @@ class DigimonListingRepoImpl @Inject constructor(
     private val dispatcher: CoroutineDispatcherApi
 ) : DigimonListingRepo {
     override suspend fun execute(): Flow<NetworkResult<DigimonListResponse>> {
+
         return withContext(dispatcher.io) {
             flow {
                 val result = api.getDigimonList()?.await()

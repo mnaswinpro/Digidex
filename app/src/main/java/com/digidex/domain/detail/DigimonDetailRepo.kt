@@ -1,4 +1,4 @@
-package com.digidex.repository.detail
+package com.digidex.domain.detail
 
 import com.digidex.repository.NetworkResult
 import com.digidex.repository.detail.data.DigimonDetailResponse

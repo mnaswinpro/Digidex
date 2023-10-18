@@ -6,9 +6,9 @@ import com.digidex.domain.detail.DigimonDetailUseCaseImpl
 import com.digidex.domain.listing.DigimonListingTransformer
 import com.digidex.domain.listing.DigimonListingTransformerImpl
 import com.digidex.domain.listing.DigimonListingUseCaseImpl
-import com.digidex.repository.detail.DigimonDetailRepo
+import com.digidex.domain.detail.DigimonDetailRepo
 import com.digidex.repository.detail.DigimonDetailRepoImpl
-import com.digidex.repository.listing.DigimonListingRepo
+import com.digidex.domain.listing.DigimonListingRepo
 import com.digidex.repository.listing.DigimonListingRepoImpl
 import com.digidex.ui.detail.DigimonDetailUseCase
 import com.digidex.ui.listing.DigimonListingUseCase

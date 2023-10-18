@@ -1,4 +1,4 @@
-package com.digidex.repository.listing
+package com.digidex.domain.listing
 
 import com.digidex.repository.NetworkResult
 import com.digidex.repository.listing.data.DigimonListResponse
