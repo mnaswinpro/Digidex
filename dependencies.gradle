@@ -59,11 +59,13 @@ ext {
     def androidXCoreTestingVersion = '2.1.0'
     def kotlinXCoroutineVersion = '1.5.2'
     def mockkVersion = '1.13.5'
+    def mockWebServerVersion = '4.11.0'
     unitTestingDependencies = [
             jUnit: "junit:junit:${jUnitVersion}",
             androidXCoreTesting: "androidx.arch.core:core-testing:${androidXCoreTestingVersion}",
             kotlinXCoroutine: "org.jetbrains.kotlinx:kotlinx-coroutines-test:${kotlinXCoroutineVersion}",
-            mockk: "io.mockk:mockk:${mockkVersion}"
+            mockk: "io.mockk:mockk:${mockkVersion}",
+            mockWebServer: "com.squareup.okhttp3:mockwebserver:${mockWebServerVersion}"
     ]
     unitTesting = unitTestingDependencies.values()
 
