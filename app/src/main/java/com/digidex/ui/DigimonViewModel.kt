@@ -25,32 +25,34 @@ class DigimonViewModel @Inject constructor(
     private val dispatcher: CoroutineDispatcherApi
 ) : ViewModel() {
 
-    private val _digimonListLiveData = MutableLiveData<ListingScreen<List<Digimon>>>(ListingScreen.Loading)
-    val digimonListLiveData : LiveData<ListingScreen<List<Digimon>>> get() = _digimonListLiveData
+    private val _digimonListLiveData =
+        MutableLiveData<ListingScreen<List<Digimon>>>(ListingScreen.Loading)
+    val digimonListLiveData: LiveData<ListingScreen<List<Digimon>>> get() = _digimonListLiveData
 
-    private val _digimonDetailLiveData = MutableLiveData<DetailScreen<DigimonDetail>>(DetailScreen.Loading)
-    val digimonDetailLiveData : LiveData<DetailScreen<DigimonDetail>> get() = _digimonDetailLiveData
+    private val _digimonDetailLiveData =
+        MutableLiveData<DetailScreen<DigimonDetail>>(DetailScreen.Loading)
+    val digimonDetailLiveData: LiveData<DetailScreen<DigimonDetail>> get() = _digimonDetailLiveData
 
     fun fetchDigimonList() {
-        viewModelScope.launch (dispatcher.io) {
+        viewModelScope.launch(dispatcher.io) {
             listingRepository.execute().collect {
-                when(it) {
+                when (it) {
                     is NetworkResult.Success -> {
-                        if(it.result.content.isEmpty()) {
-                            _digimonListLiveData.postValue(ListingScreen.Empty(
-                                ERROR_MESSAGE_EMPTY_DATA
-                            ))
+                        if (it.result.content.isEmpty()) {
+                            _digimonListLiveData.postValue(
+                                ListingScreen.Empty(
+                                    ERROR_MESSAGE_EMPTY_DATA
+                                )
+                            )
                         } else {
                             _digimonListLiveData.postValue(
                                 ListingScreen.Success(transformer.getDigimonList(it.result))
                             )
                         }
                     }
-                    is NetworkResult.DataError -> {
+
+                    is NetworkResult.Error -> {
                         _digimonListLiveData.postValue(ListingScreen.Error(ERROR_MESSAGE_NULL_DATA))
-                    }
-                    is NetworkResult.GenericError -> {
-                        _digimonListLiveData.postValue(ListingScreen.Error(ERROR_MESSAGE_GENERIC))
                     }
                 }
             }
@@ -58,19 +60,17 @@ class DigimonViewModel @Inject constructor(
     }
 
     fun fetchDigimon(url: String) {
-        viewModelScope.launch (dispatcher.io) {
+        viewModelScope.launch(dispatcher.io) {
             detailRepository.execute(url).collect {
-                when(it) {
+                when (it) {
                     is NetworkResult.Success -> {
                         _digimonDetailLiveData.postValue(
                             DetailScreen.Success(transformer.getDigimonDetail(it.result))
                         )
                     }
-                    is NetworkResult.DataError -> {
+
+                    is NetworkResult.Error -> {
                         _digimonDetailLiveData.postValue(DetailScreen.Error(ERROR_MESSAGE_NULL_DATA))
-                    }
-                    is NetworkResult.GenericError -> {
-                        _digimonDetailLiveData.postValue(DetailScreen.Error(ERROR_MESSAGE_GENERIC))
                     }
                 }
             }
