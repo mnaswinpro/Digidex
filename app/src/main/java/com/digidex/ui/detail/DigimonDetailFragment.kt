@@ -8,6 +8,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.digidex.NavGraphArgs
+import com.digidex.R
 import com.digidex.base.BaseFragment
 import com.digidex.databinding.FragmentDigimonDetailBinding
 import com.digidex.domain.data.Digimon
@@ -21,6 +22,7 @@ import com.digidex.util.isHidden
 import com.digidex.util.loadImageAndShow
 import com.digidex.util.setTextAndShow
 import com.digidex.util.show
+import com.digidex.util.showMessageToUser
 
 class DigimonDetailFragment : BaseFragment() {
 
@@ -51,7 +53,6 @@ class DigimonDetailFragment : BaseFragment() {
                 initObservers()
                 viewModel.fetchDigimon(digimon.detailUrl)
             }
-            arguments?.clear()
         }
     }
 
@@ -102,11 +103,11 @@ class DigimonDetailFragment : BaseFragment() {
     }
 
     private fun showLoading() {
-
+        showMessageToUser(R.string.message_loading_detail)
     }
 
     private fun showError() {
-
+        showMessageToUser(R.string.message_detail_error)
     }
 
     private fun onDigimonSelected(digimon: Digimon) {

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Digidex</string>
+
+    <string name="message_no_network">No network connection</string>
+    <string name="message_loading_detail">Loading Digimon…</string>
+    <string name="message_detail_error">Some details could not be fetched</string>
 </resources>

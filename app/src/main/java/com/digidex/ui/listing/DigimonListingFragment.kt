@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.digidex.R
 import com.digidex.base.BaseFragment
 import com.digidex.databinding.FragmentDigimonListingBinding
 import com.digidex.domain.data.Digimon
@@ -14,7 +16,9 @@ import com.digidex.ui.DigimonViewModel
 import com.digidex.ui.common.DigimonListAdapter
 import com.digidex.ui.common.DigimonListAdapter.Companion.GRID_LAYOUT_COLUMN_COUNT
 import com.digidex.util.hide
+import com.digidex.util.setTextAndShow
 import com.digidex.util.show
+import com.digidex.util.showMessageToUser
 
 class DigimonListingFragment : BaseFragment() {
 
@@ -39,7 +43,7 @@ class DigimonListingFragment : BaseFragment() {
         if (isNetworkAvailable()) {
             viewModel.fetchDigimonList()
         } else {
-            //TODO
+            showMessageToUser(R.string.message_no_network)
         }
     }
 
@@ -56,11 +60,11 @@ class DigimonListingFragment : BaseFragment() {
                 }
 
                 is ListingScreen.Empty -> {
-                    showEmpty()
+                    showError(it.message)
                 }
 
                 is ListingScreen.Error -> {
-                    showError()
+                    showError(it.errorMessage)
                 }
 
                 is ListingScreen.Success -> {
@@ -72,21 +76,21 @@ class DigimonListingFragment : BaseFragment() {
 
     private fun showContent(list: List<Digimon>) {
         binding.progressBar.hide()
+        binding.tvErrorMessage.hide()
         binding.rvDigimonList.show()
         adapter.submitList(list)
     }
 
     private fun showLoading() {
         binding.rvDigimonList.hide()
+        binding.tvErrorMessage.hide()
         binding.progressBar.show()
     }
 
-    private fun showError() {
-
-    }
-
-    private fun showEmpty() {
-
+    private fun showError(errorMessage: String) {
+        binding.rvDigimonList.hide()
+        binding.progressBar.hide()
+        binding.tvErrorMessage.setTextAndShow(errorMessage)
     }
 
     private fun onDigimonSelected(digimon: Digimon) {
