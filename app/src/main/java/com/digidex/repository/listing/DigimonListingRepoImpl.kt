@@ -5,6 +5,7 @@ import com.digidex.domain.listing.DigimonListingRepo
 import com.digidex.repository.DigimonApi
 import com.digidex.repository.NetworkResult
 import com.digidex.repository.NoDataException
+import com.digidex.repository.UnknownException
 import com.digidex.repository.listing.data.DigimonListResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -21,11 +22,15 @@ class DigimonListingRepoImpl @Inject constructor(
 
         return withContext(dispatcher.io) {
             flow {
-                val result = api.getDigimonList()?.await()
-                if (result == null) {
-                    emit(NetworkResult.Error(NoDataException()))
-                } else {
-                    emit(NetworkResult.Success(result))
+                try {
+                    val result = api.getDigimonList()?.await()
+                    if (result == null) {
+                        emit(NetworkResult.Error(NoDataException()))
+                    } else {
+                        emit(NetworkResult.Success(result))
+                    }
+                } catch (e: Exception) {
+                    emit(NetworkResult.Error(UnknownException()))
                 }
             }
         }
