@@ -1,9 +1,15 @@
 package com.digidex.ui
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.res.Resources
+import android.os.Build
 import android.os.Bundle
+import android.view.WindowManager
+import androidx.annotation.ColorInt
+import androidx.appcompat.app.AppCompatActivity
+import com.digidex.R
 import com.digidex.databinding.ActivityDigimonBinding
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class DigimonActivity : AppCompatActivity() {
@@ -14,5 +20,12 @@ class DigimonActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDigimonBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setStatusBarColor(resources.getColor(R.color.black, null))
+    }
+
+    private fun setStatusBarColor(@ColorInt color: Int) {
+        val window = window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.statusBarColor = color
     }
 }
