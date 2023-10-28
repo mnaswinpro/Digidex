@@ -90,6 +90,10 @@ class DigimonViewModel @Inject constructor(
         }
     }
 
+    fun resetDigimonDetailData() {
+        _digimonDetailLiveData.postValue(DetailScreen.Loading)
+    }
+
     companion object {
         const val ERROR_MESSAGE_EMPTY_DATA = "No Monsters in list"
         const val ERROR_MESSAGE_GENERIC = "Something went wrong"

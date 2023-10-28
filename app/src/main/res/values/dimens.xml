@@ -17,9 +17,6 @@
     <dimen name="text_size_14sp">14sp</dimen>
     <dimen name="text_size_12sp">12sp</dimen>
 
-    <!-- Icon size -->
-    <dimen name="icon_size_16dp">16dp</dimen>
-    <dimen name="icon_size_24dp">24dp</dimen>
-
-    <dimen name="progressbar_small">32dp</dimen>
+    <!-- Progressbar size -->
+    <dimen name="progressbar_medium">60dp</dimen>
 </resources>

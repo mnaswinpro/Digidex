@@ -8,21 +8,17 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.digidex.NavGraphArgs
-import com.digidex.R
 import com.digidex.base.BaseFragment
 import com.digidex.databinding.FragmentDigimonDetailBinding
 import com.digidex.domain.data.Digimon
 import com.digidex.domain.data.DigimonDetail
-import com.digidex.domain.data.toDigimonDetail
 import com.digidex.ui.DigimonViewModel
 import com.digidex.ui.common.DigimonListAdapter
 import com.digidex.ui.common.DigimonListAdapter.Companion.GRID_LAYOUT_COLUMN_COUNT
 import com.digidex.util.hide
-import com.digidex.util.isHidden
 import com.digidex.util.loadImageAndShow
 import com.digidex.util.setTextAndShow
 import com.digidex.util.show
-import com.digidex.util.showMessageToUser
 
 class DigimonDetailFragment : BaseFragment() {
 
@@ -49,7 +45,6 @@ class DigimonDetailFragment : BaseFragment() {
         arguments?.let { bundle ->
             digimon = NavGraphArgs.fromBundle(bundle).digimon
             digimon?.let { digimon ->
-                loadDigimonDetail(digimon.toDigimonDetail())
                 initObservers()
                 viewModel.fetchDigimon(digimon.detailUrl)
             }
@@ -75,7 +70,7 @@ class DigimonDetailFragment : BaseFragment() {
                 }
 
                 is DetailScreen.Error -> {
-                    showError()
+                    showError(it.errorMessage)
                 }
 
                 is DetailScreen.Loading -> {
@@ -87,33 +82,50 @@ class DigimonDetailFragment : BaseFragment() {
 
     private fun loadDigimonDetail(digimonDetail: DigimonDetail) {
         with(binding) {
-            if (id.isHidden()) id.setTextAndShow(digimonDetail.id)
-            if (name.isHidden()) name.setTextAndShow(digimonDetail.name)
-            if (image.isHidden()) image.loadImageAndShow(digimonDetail.imageUrl)
-            if (description.isHidden()) description.setTextAndShow(digimonDetail.description)
+            id.setTextAndShow(digimonDetail.id)
+            name.setTextAndShow(digimonDetail.name)
+            image.loadImageAndShow(digimonDetail.imageUrl)
+            description.setTextAndShow(digimonDetail.description)
             if (digimonDetail.priorEvolutions.isNotEmpty()) {
                 priorEvolutionsAdapter.submitList(digimonDetail.priorEvolutions)
+                tvPriorEvolutions.show()
                 rvPriorEvolutions.show()
             }
             if (digimonDetail.nextEvolutions.isNotEmpty()) {
                 nextEvolutionsAdapter.submitList(digimonDetail.nextEvolutions)
+                tvNextEvolutions.show()
                 rvNextEvolutions.show()
             }
         }
+        showContent()
+    }
+
+    private fun showContent() {
+        binding.progressBar.hide()
+        binding.tvErrorMessage.hide()
+        binding.scrollview.show()
     }
 
     private fun showLoading() {
-        showMessageToUser(R.string.message_loading_detail)
+        binding.scrollview.hide()
+        binding.tvErrorMessage.hide()
+        binding.progressBar.show()
     }
 
-    private fun showError() {
-        showMessageToUser(R.string.message_detail_error)
+    private fun showError(errorMessage: String) {
+        binding.scrollview.hide()
+        binding.progressBar.hide()
+        binding.tvErrorMessage.setTextAndShow(errorMessage)
     }
 
     private fun onDigimonSelected(digimon: Digimon) {
-        binding.rvPriorEvolutions.hide()
-        binding.rvNextEvolutions.hide()
+        viewModel.resetDigimonDetailData()
         val action = DigimonDetailFragmentDirections.actionDetailToDetail(digimon = digimon)
         findNavController().navigate(action)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        viewModel.resetDigimonDetailData()
     }
 }
