@@ -7,6 +7,9 @@ import androidx.fragment.app.Fragment
 
 open class BaseFragment : Fragment() {
 
+    /**
+     * Helper method to check for network connectivity before making network calls
+     */
     protected fun isNetworkAvailable(): Boolean {
         val connectivityManager =
             context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager

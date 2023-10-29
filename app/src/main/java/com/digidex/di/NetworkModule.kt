@@ -12,6 +12,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
+/**
+ * An dependency injection module to provide dependencies required for making network calls such as
+ * [Retrofit], [OkHttpClient] and [GsonConverterFactory]
+ */
 @InstallIn(SingletonComponent::class)
 @Module
 class NetworkModule {

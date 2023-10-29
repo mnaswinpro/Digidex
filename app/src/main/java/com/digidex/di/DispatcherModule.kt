@@ -2,19 +2,18 @@ package com.digidex.di
 
 import com.digidex.dispatcher.CoroutineDispatcherApi
 import com.digidex.dispatcher.CoroutineDispatcherApiImpl
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
 
+/**
+ * An dependency injection module to provide coroutine dispatchers required
+ */
 @InstallIn(SingletonComponent::class)
 @Module
-class DispatcherModule {
+abstract class DispatcherModule {
 
-    @Provides
-    @Singleton
-    fun providesCoroutineDispatcher(): CoroutineDispatcherApi {
-        return CoroutineDispatcherApiImpl()
-    }
+    @Binds
+    abstract fun coroutineDispatcher(impl: CoroutineDispatcherApiImpl): CoroutineDispatcherApi
 }

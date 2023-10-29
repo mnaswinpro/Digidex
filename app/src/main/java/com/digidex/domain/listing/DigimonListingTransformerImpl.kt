@@ -1,9 +1,12 @@
 package com.digidex.domain.listing
 
-import com.digidex.repository.listing.data.DigimonListResponse
 import com.digidex.domain.data.Digimon
+import com.digidex.repository.listing.data.DigimonListResponse
 import javax.inject.Inject
 
+/**
+ * class with [DigimonListingTransformer] implementation
+ */
 class DigimonListingTransformerImpl @Inject constructor() : DigimonListingTransformer {
 
     override fun getDigimonList(response: DigimonListResponse): List<Digimon> {
@@ -17,4 +20,3 @@ class DigimonListingTransformerImpl @Inject constructor() : DigimonListingTransf
         }
     }
 }
-

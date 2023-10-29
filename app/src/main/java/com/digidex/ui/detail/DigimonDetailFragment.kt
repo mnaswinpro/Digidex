@@ -129,3 +129,4 @@ class DigimonDetailFragment : BaseFragment() {
         viewModel.resetDigimonDetailData()
     }
 }
+

@@ -1,5 +1,8 @@
 package com.digidex.repository.detail.data
 
+/**
+ * Data class to hold response from network call for getting digimon detail
+ */
 data class DigimonDetailResponse(
     val attributes: List<Attribute>,
     val descriptions: List<Description>,

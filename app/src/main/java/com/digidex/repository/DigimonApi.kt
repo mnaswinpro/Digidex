@@ -7,6 +7,9 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 import retrofit2.http.Url
 
+/**
+ * Interface defining the api endpoints to fetch response from network calls
+ */
 interface DigimonApi {
 
     @GET("digimon")

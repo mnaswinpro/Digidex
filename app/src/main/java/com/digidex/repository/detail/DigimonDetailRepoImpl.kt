@@ -13,6 +13,9 @@ import kotlinx.coroutines.withContext
 import retrofit2.await
 import javax.inject.Inject
 
+/**
+ * Class with [DigimonDetailRepo] implementation
+ */
 class DigimonDetailRepoImpl @Inject constructor(
     private val api: DigimonApi,
     private val dispatcher: CoroutineDispatcherApi
@@ -21,7 +24,7 @@ class DigimonDetailRepoImpl @Inject constructor(
 
         return withContext(dispatcher.io) {
             flow {
-                try{
+                try {
                     val result = api.getDigimon(url)?.await()
                     if (result == null) {
                         emit(NetworkResult.Error(NoDataException()))

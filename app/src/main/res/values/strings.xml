@@ -4,4 +4,9 @@
     <string name="message_no_network">No network connection</string>
     <string name="message_loading_detail">Loading Digimon…</string>
     <string name="message_detail_error">Some details could not be fetched</string>
+
+    <string name="content_description_digimon_image">Digimon image</string>
+
+    <string name="label_prior_evolution">Prior Evolutions</string>
+    <string name="label_next_evolution">Next Evolutions</string>
 </resources>

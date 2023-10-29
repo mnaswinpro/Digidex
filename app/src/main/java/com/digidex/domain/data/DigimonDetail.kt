@@ -1,5 +1,8 @@
 package com.digidex.domain.data
 
+/**
+ * Data class to hold detailed Digimon info
+ */
 data class DigimonDetail(
     val id: String,
     val name: String,

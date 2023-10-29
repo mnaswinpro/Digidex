@@ -18,6 +18,7 @@
             android:id="@+id/image"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:contentDescription="@string/content_description_digimon_image"
             android:scaleType="fitCenter"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="H,1:1"

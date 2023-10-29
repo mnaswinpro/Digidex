@@ -32,6 +32,9 @@ class DigimonViewModel @Inject constructor(
         MutableLiveData<DetailScreen<DigimonDetail>>(DetailScreen.Loading)
     val digimonDetailLiveData: LiveData<DetailScreen<DigimonDetail>> get() = _digimonDetailLiveData
 
+    /**
+     * Function to fetch digimon list and update it to ui layer using [LiveData]
+     */
     fun fetchDigimonList() {
         viewModelScope.launch(dispatcher.main) {
             digimonListingUseCase.execute().collect {
@@ -51,12 +54,17 @@ class DigimonViewModel @Inject constructor(
                     }
 
                     is UseCaseResult.Error -> {
-                        when(it.exception) {
+                        when (it.exception) {
                             is NoDataException -> {
                                 _digimonListLiveData.postValue(ListingScreen.Error(it.exception.message))
                             }
+
                             else -> {
-                                _digimonListLiveData.postValue(ListingScreen.Error(ERROR_MESSAGE_GENERIC))
+                                _digimonListLiveData.postValue(
+                                    ListingScreen.Error(
+                                        ERROR_MESSAGE_GENERIC
+                                    )
+                                )
                             }
                         }
                     }
@@ -65,6 +73,9 @@ class DigimonViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Function to fetch digimon detail and update it to ui layer using [LiveData]
+     */
     fun fetchDigimon(url: String) {
         viewModelScope.launch(dispatcher.main) {
             digimonDetailUseCase.execute(url).collect {
@@ -76,12 +87,17 @@ class DigimonViewModel @Inject constructor(
                     }
 
                     is UseCaseResult.Error -> {
-                        when(it.exception) {
+                        when (it.exception) {
                             is NoDataException -> {
                                 _digimonDetailLiveData.postValue(DetailScreen.Error(it.exception.message))
                             }
+
                             else -> {
-                                _digimonDetailLiveData.postValue(DetailScreen.Error(ERROR_MESSAGE_GENERIC))
+                                _digimonDetailLiveData.postValue(
+                                    DetailScreen.Error(
+                                        ERROR_MESSAGE_GENERIC
+                                    )
+                                )
                             }
                         }
                     }
@@ -90,6 +106,9 @@ class DigimonViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Function to reset digimon detail [LiveData] to [DetailScreen.Loading] state
+     */
     fun resetDigimonDetailData() {
         _digimonDetailLiveData.postValue(DetailScreen.Loading)
     }

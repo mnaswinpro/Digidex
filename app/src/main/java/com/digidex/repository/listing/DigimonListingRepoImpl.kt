@@ -13,6 +13,9 @@ import kotlinx.coroutines.withContext
 import retrofit2.await
 import javax.inject.Inject
 
+/**
+ * Class with [DigimonListingRepo] implementation
+ */
 class DigimonListingRepoImpl @Inject constructor(
     private val api: DigimonApi,
     private val dispatcher: CoroutineDispatcherApi

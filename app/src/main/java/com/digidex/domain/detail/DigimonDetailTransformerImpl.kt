@@ -6,6 +6,9 @@ import com.digidex.repository.detail.data.DigimonDetailResponse
 import com.digidex.repository.detail.data.Evolution
 import javax.inject.Inject
 
+/**
+ * class with [DigimonDetailTransformer] implementation
+ */
 class DigimonDetailTransformerImpl @Inject constructor() : DigimonDetailTransformer {
 
     override fun getDigimonDetail(response: DigimonDetailResponse): DigimonDetail {

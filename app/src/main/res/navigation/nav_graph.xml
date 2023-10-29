@@ -15,7 +15,7 @@
             app:destination="@id/digimonDetailFragment">
             <argument
                 android:name="digimon"
-                app:argType="com.digidex.domain.data.Digimon"/>
+                app:argType="com.digidex.domain.data.Digimon" />
         </action>
 
     </fragment>
@@ -30,12 +30,12 @@
             app:destination="@id/digimonDetailFragment">
             <argument
                 android:name="digimon"
-                app:argType="com.digidex.domain.data.Digimon"/>
+                app:argType="com.digidex.domain.data.Digimon" />
         </action>
     </fragment>
 
     <argument
         android:name="digimon"
-        app:argType="com.digidex.domain.data.Digimon"/>
+        app:argType="com.digidex.domain.data.Digimon" />
 
 </navigation>
