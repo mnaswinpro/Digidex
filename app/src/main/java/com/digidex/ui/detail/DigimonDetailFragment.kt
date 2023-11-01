@@ -124,8 +124,8 @@ class DigimonDetailFragment : BaseFragment() {
         findNavController().navigate(action)
     }
 
-    override fun onPause() {
-        super.onPause()
+    override fun onDestroyView() {
+        super.onDestroyView()
         viewModel.resetDigimonDetailData()
     }
 }
